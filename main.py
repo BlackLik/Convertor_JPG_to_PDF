@@ -1,6 +1,7 @@
 import os
 from PIL import Image
 from PyPDF2 import PdfFileMerger
+import shutil
 
 
 def img_to_pdf(file_name):
@@ -21,6 +22,7 @@ files.sort(key=lambda name: int(name.split('.')[0]))
 for file in files:
     img_to_pdf(file)
 
+
 files = [f for f in os.listdir('./img2pdf/') if f.endswith('.pdf')]
 files.sort(key=lambda name: int(name.split('.')[0]))
 
@@ -30,4 +32,5 @@ for file in files:
 
 merger.write('result.pdf')
 merger.close()
+shutil.rmtree('img2pdf')
 print('Процесс завершён')
